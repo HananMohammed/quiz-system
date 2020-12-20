@@ -3,8 +3,8 @@
 
 class Controller
 {
-
-    /**Load The Required Model
+    /**
+     * Load The Required Model
      * @param $model
      * @return mixed
      */
