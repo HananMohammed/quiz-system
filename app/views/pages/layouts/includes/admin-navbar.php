@@ -2,7 +2,7 @@
 $admin_home =URL_ROOT."/adminPanel";
 $students =URL_ROOT."/adminPanel/students";
 $scores =URL_ROOT."/adminPanel/scores";
-$quiz = URL_ROOT."/adminPanel/quiz";
+$quiz = URL_ROOT."/adminPanel/quizLists";
 $addQuiz = URL_ROOT."/adminPanel/addQuiz";
 $logout =URL_ROOT."/adminPanel/logout";
 ?>

@@ -54,6 +54,16 @@ class AdminModel
             ];
         }
     }
+    public function createQuiz($quiz_title, $question_numbers, $mark_on_right, $minus_on_wrong)
+    {
+        $currentData = date("Y-m-d H:i:s");
+
+        $this->db->query("INSERT INTO questions ( quiz_title, question_numbers, mark_on_right, minus_on_wrong, created_at) VALUES ( '$quiz_title', '$question_numbers', '$mark_on_right', '$minus_on_wrong', '$currentData') ");
+
+        $this->db->execute() ;
+
+        return "success";
+    }
     public function deleteStudent($id)
     {
         $this->db->query("DELETE FROM students WHERE students.id = $id");
