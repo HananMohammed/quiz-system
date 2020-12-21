@@ -11,7 +11,22 @@ $registerLink =URL_ROOT."/students";
                         <div class="box box-border">
                             <div class="box-body">
                                 <center> <h5 style="font-family: Noto Sans;">Login to </h5><h4 style="font-family: Noto Sans;"> Quiz System</h4></center><br>
-                                <p class="text-danger"><?php  if(isset($data["error-login"])){ echo $data["error-login"];  } ?></p>
+                                <?php if(isset($data["success"])): ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong><?php echo $data["success"]; ?></strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if(isset($data["error-login"])): ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong><?php echo $data["error-login"]; ?></strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
                                 <form method="post" action=<?php echo $action ;?> enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Enter Your Email :</label>

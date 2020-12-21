@@ -78,7 +78,18 @@ class Students extends Controller
                 $this->view('pages/login', $data);
             }
             else{
-                $this->view('pages/register', $errors);
+                if(isset($_SESSION["register_errors"]))
+                {
+                    session_destroy();
+                }
+                $_SESSION["register_errors"] = $errors ;
+                $_SESSION["old"] = [
+                    "name" =>$name,
+                    "email" => $email,
+                    "password" =>$_POST["password"],
+                    "college" => $college
+                ] ;
+                $this->view('pages/register');
             }
         }
 

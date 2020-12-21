@@ -12,22 +12,36 @@ $loginLink =URL_ROOT."/students/login";
                         <div class="box box-border">
                             <div class="box-body">
                                 <center> <h5 style="font-family: Noto Sans;">Register to </h5><h4 style="font-family: Noto Sans;"> Quiz System</h4></center><br>
+                                <?php if(isset($_SESSION["register_errors"])): ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>
+                                            <ul>
+                                             <?php foreach($_SESSION["register_errors"] as $error): ?>
+                                                <li><?php echo $error; ?></li>
+                                            <?php endforeach; ?>
+                                            </ul>
+                                        </strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
                                 <form method="post" action=<?php echo $action ;?> enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Enter Your Username:</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Student Username"  />
+                                        <input type="text" name="name" class="form-control" placeholder="Student Username"  <?php if(isset($_SESSION["old"]["name"])): ?> value=<?php echo $_SESSION["old"]["name"] ; ?> <?php endif; ?>  />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Your Email:</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Student Email"  />
+                                        <input type="email" name="email" class="form-control" placeholder="Student Email"  <?php if(isset($_SESSION["old"]["email"])): ?> value=<?php echo $_SESSION["old"]["email"] ; ?> <?php endif; ?> />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Your Password:</label>
-                                        <input type="password" name="password" class="form-control"  placeholder="Password"  />
+                                        <input type="password" name="password" class="form-control"  placeholder="Password"  <?php if(isset($_SESSION["old"]["password"])): ?> value=<?php echo $_SESSION["old"]["password"] ; ?> <?php endif; ?> />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Your College Name:</label>
-                                        <input type="text" name="college" class="form-control"  placeholder="College Name "  />
+                                        <input type="text" name="college" class="form-control"  placeholder="College Name " <?php if(isset($_SESSION["old"]["college"])): ?> value=<?php echo $_SESSION["old"]["college"] ; ?> <?php endif; ?>  />
                                     </div>
 
                                     <div class="form-group text-right">
