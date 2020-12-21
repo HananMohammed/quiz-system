@@ -5,7 +5,7 @@ $registerLink =URL_ROOT."/students";
 
 ?>
 <div class="container-fluid quiz-container">
- <div class="quiz-body">
+ <div class="quiz-body fixed-height">
      <h1 class="home-header">Quiz System</h1>
      <p class="quiz-msg">Register if you're new Student or Login</p>
      <div class="row m-auto reg-row">

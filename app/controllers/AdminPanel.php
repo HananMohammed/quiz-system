@@ -16,13 +16,32 @@ class AdminPanel extends Controller
     public function index()
     {
         session_start();
-        if(isset($_SESSION['logged']))
+        if(isset($_SESSION['logged_admin']))
         {
             $this->view('pages/admin_homepage');
         }else{
             $this->view('pages/admin_login');
         }
 
+    }
+    public function students()
+    {
+        session_start();
+        if(isset($_SESSION['logged_admin']))
+        {
+            $students = $this->adminModel->listStudents();
+            $_SESSION["students"] = $students ;
+            $this->view('pages/admin_list_students');
+
+        }else{
+            $this->view('pages/admin_login');
+        }
+    }
+    public function delete()
+    {
+        $result = $this->adminModel->deleteStudent($_GET["id"]) ;
+        $output = ($result == "success") ?  $result :  "fail";
+        echo json_encode($output);
     }
     /**
      * Logout Admin

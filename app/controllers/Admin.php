@@ -38,7 +38,7 @@ class Admin extends Controller
 
             if($result["availability"] == "allowed")
             {
-                $_SESSION['logged']=$result["data"]["email"];
+                $_SESSION['logged_admin']=$result["data"]["email"];
                 $_SESSION['name']=$result["data"]["name"];
                 $_SESSION['id']=$result["data"]["id"];
                 $_SESSION['email']=$result["data"]["email"];

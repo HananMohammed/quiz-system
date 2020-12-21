@@ -1,3 +1,6 @@
+body{
+    background: linear-gradient(55deg, #2193B0, #6DD5ED);
+}
 .quiz-container {
     margin: 0;
     padding: 0;
@@ -11,11 +14,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
     font-family: sans-serif;
     overflow: hidden;
+    height: 100vm;
 }
-
+.fixed-height{
+    height: 100vh!important;
+}
 .home-header {
     font-size: 6rem!important;
     font-weight: 900;
@@ -132,8 +137,6 @@ a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-    /*color:linear-gradient(to right, #a2ccb6 0%, #fceeb5 50%, #ee786e 100%); ;*/
-    /*font-weight: 900;*/
     top: -120px;
     z-index: 10;
 }

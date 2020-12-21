@@ -3,7 +3,7 @@ include 'layouts/header.php';
 $action = URL_ROOT."/admin/authAdmin";
 ?>
     <div class="container-fluid quiz-container">
-        <div class="quiz-body">
+        <div class="quiz-body fixed-height">
             <section class="login first grey">
                 <div class="container">
                     <div class="box-wrapper">

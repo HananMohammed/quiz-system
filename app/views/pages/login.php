@@ -4,7 +4,7 @@ $action = URL_ROOT."/students/authStudent";
 $registerLink =URL_ROOT."/students";
 ?>
 <div class="container-fluid quiz-container">
-        <div class="quiz-body">
+        <div class="quiz-body fixed-height">
             <section class="login first grey">
                 <div class="container">
                     <div class="box-wrapper">

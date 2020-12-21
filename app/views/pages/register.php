@@ -5,7 +5,7 @@ $loginLink =URL_ROOT."/students/login";
 ?>
 
     <div class="container-fluid quiz-container">
-        <div class="quiz-body">
+        <div class="quiz-body ">
             <section class="login first grey">
                 <div class="container">
                     <div class="box-wrapper">

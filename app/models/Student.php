@@ -33,15 +33,16 @@ class Student
         $this->db->query("SELECT * from students WHERE email='$email'");
 
         $result = $this->db->resultSet();
-        $data = get_object_vars($result[0]) ;
-        if (password_verify($password, $data["password"]))
-        {
-            return [
-                "availability" => "allowed",
-                "data" => $data
-            ] ;
-        }
-        else{
+        if (!empty($result)){
+            $data = get_object_vars($result[0]) ;
+            if (password_verify($password, $data["password"]))
+            {
+                return [
+                    "availability" => "allowed",
+                    "data" => $data
+                ] ;
+            }
+        }else{
             return [ "availability" => "notAllowed" ] ;
         }
 

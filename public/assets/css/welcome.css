@@ -6,13 +6,13 @@
 /*  font-family: Noto Sans;*/
 /*}*/
 
-/*.header {*/
-/*  text-align: center;*/
-/*  overflow: hidden;*/
-/*  background-color: #0b9164;*/
-/*  padding: 20px 10px;*/
-/*  text-decoration: none;*/
-/*}*/
+.header {
+  text-align: center;
+  overflow: hidden;
+  background-color: #0b9164;
+  padding: 20px 10px;
+  text-decoration: none;
+}
 
 .header a, .header .logo {
   color: rgb(255, 255, 255);
@@ -47,4 +47,33 @@
   margin:40px;
   padding:20px;
   font: 15px "Noto Sans";
+  position: relative;
+  top: -250px;
+  z-index: 10;
+
+}
+
+.students-header{
+  font-size: 48px;
+  font-weight: 800;
+  background: -webkit-linear-gradient(45deg, #09009f, #ee786e 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  top: 0;
+  z-index: 10;
+}
+.navbar-brand{
+  font-weight: 800;
+  background: -webkit-linear-gradient(45deg, #6DD5ED, #ee786e 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+.hoverable {
+  cursor: pointer;
+}
+.hoverable:hover{
+  transition: box-shadow .25s;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }

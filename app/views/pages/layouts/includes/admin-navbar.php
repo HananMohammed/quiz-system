@@ -1,6 +1,6 @@
 <?php
 $admin_home =URL_ROOT."/adminPanel";
-$users =URL_ROOT."/adminPanel/users";
+$students =URL_ROOT."/adminPanel/students";
 $scores =URL_ROOT."/adminPanel/scores";
 $quiz = URL_ROOT."/adminPanel/quiz";
 $addQuiz = URL_ROOT."/adminPanel/addQuiz";
@@ -21,8 +21,8 @@ $logout =URL_ROOT."/adminPanel/logout";
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=<?php echo $users ;?>>
-                    <i class="far fa-user"></i> Users
+                <a class="nav-link" href=<?php echo $students ;?>>
+                    <i class="far fa-user"></i> Students
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
