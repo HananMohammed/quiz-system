@@ -12,6 +12,11 @@ class Welcome extends Controller
     {
         $this->welcomeModel = $this->model('WelcomeModel') ;
     }
+
+    /**
+     * direct Student to welcome Page if Authenticated
+     * @param $data
+     */
     public function index($data)
     {
         session_start();
@@ -24,6 +29,10 @@ class Welcome extends Controller
         }
 
     }
+
+    /**
+     * Logout Student
+     */
     public function logout()
     {
         session_start();
