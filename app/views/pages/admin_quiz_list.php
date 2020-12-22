@@ -2,6 +2,7 @@
 include 'layouts/header.php';
 include 'layouts/includes/admin-navbar.php';
 $delete = URL_ROOT."/adminPanel/delete?id=";
+
 ?>
 
 <div class="container-fluid quiz-container">
@@ -12,6 +13,14 @@ $delete = URL_ROOT."/adminPanel/delete?id=";
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel">
+                        <?php if(isset($data["success"])):?>
+                            <div class="alert alert-success alert-dismissible fade show m-auto " role="alert" id="alertSuccess" style=" width:60%;display: flex;justify-content: center;">
+                                <strong><?php echo $data["success"] ;?></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                         <div class="alert alert-success alert-dismissible fade show m-auto " role="alert" id="alertSuccess" style=" width:60%;display: flex;justify-content: center;display: none;">
                             <strong>Quiz Deleted Successfully </strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,13 +33,12 @@ $delete = URL_ROOT."/adminPanel/delete?id=";
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="table-responsive mt-3">
+                        <div class="col-xs-12 table-responsive mt-3">
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th scope="col" class="font-weight-bold text-dark">Q.N.</th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Quiz Title</b></th>
-                                    <th scope="col" class="font-weight-bold text-dark"><b>Question Numbers</b></th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Marks on right</b></th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Minus on wrong</b></th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Created.At</b></th>
@@ -44,7 +52,6 @@ $delete = URL_ROOT."/adminPanel/delete?id=";
                                         <tr scope="row">
                                             <td class="text-dark font-italic font-weight-bold" ><?php echo $data["id"] ; ?></td>
                                             <td class="text-dark font-italic font-weight-bold" ><?php echo $data["quiz_title"] ; ?></td>
-                                            <td class="text-dark font-italic font-weight-bold" ><?php echo $data["question_numbers"] ; ?></td>
                                             <td class="text-dark font-italic font-weight-bold" ><?php echo $data["mark_on_right"] ; ?></td>
                                             <td class="text-dark font-italic font-weight-bold" ><?php echo $data["minus_on_wrong"] ; ?></td>
                                             <td class="text-dark font-italic font-weight-bold" ><?php echo $data["created_at"] ; ?></td>

@@ -23,7 +23,7 @@ $delete = URL_ROOT."/adminPanel/delete?id="
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="table-responsive mt-3">
+                        <div class="col-xs-12 table-responsive mt-3">
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr>

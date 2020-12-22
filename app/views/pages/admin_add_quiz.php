@@ -2,8 +2,6 @@
 include 'layouts/header.php';
 include 'layouts/includes/admin-navbar.php';
 $action = URL_ROOT."/adminPanel/createQuiz";
-//$oldData = $_SESSION["old-quiz"] ;
-//$errors = $_SESSION["quizErrors"] ;
 ?>
 <div class="container-fluid quiz-container">
     <div class="quiz-body">
@@ -40,16 +38,21 @@ $action = URL_ROOT."/adminPanel/createQuiz";
                                     <input type="text" class="form-control" name="quiz_title" id="title" placeholder="Enter Quiz Title "<?php if(isset( $_SESSION["old-quiz"]["quiz_title"])): ?> value=<?php echo  $_SESSION["old-quiz"]["quiz_title"] ?> <?php endif; ?>>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="questionNumbers">Total Number Of Questions </label>
-                                    <input type="number" maxlength="20" class="form-control" name="question_numbers" id="questionNumbers" placeholder="Enter Total Number of Questions " <?php if(isset( $_SESSION["old-quiz"]["question_numbers"])): ?> value=<?php echo  $_SESSION["old-quiz"]["question_numbers"] ?> <?php endif; ?> >
-                                </div>
-                                <div class="form-group col-md-12">
                                     <label for="markRight">Marks on correct answer </label>
                                     <input type="number" maxlength="5" class="form-control" name="mark_on_right" id="markRight" placeholder="Enter Marks on correct answer " <?php if(isset( $_SESSION["old-quiz"]["mark_on_right"])): ?> value=<?php echo  $_SESSION["old-quiz"]["mark_on_right"] ?> <?php endif; ?> >
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="markMinus">Minus on Wrong answer </label>
                                     <input type="number" maxlength="5" class="form-control" name="minus_on_wrong" id="markMinus" placeholder="Enter Minus Marks on wrong answer" <?php if(isset( $_SESSION["old-quiz"]["minus_on_wrong"])): ?> value=<?php echo  $_SESSION["old-quiz"]["minus_on_wrong"] ?> <?php endif; ?>>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="totalQuestions">Kindly Select Quiz Related Questions  (Questions Shouldn't be less than 10 or more than 30)</label>
+                                    <select id="totalQuestions" name="quiz_questions[]" class="form-control" multiple="multiple">
+                                        <?php foreach ($_SESSION["questions"] as $question):?>
+                                        <?php $data = get_object_vars($question) ;?>
+                                        <option value="<?php echo $data["id"]?>"><?php echo $data["question"]?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-dark" style="margin-left: 40%;">Submit</button>
                             </form>

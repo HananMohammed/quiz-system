@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15ed6091-668f-46ba-ab0d-67de8dedc5c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/pages/admin_create_question.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/pages/admin_list_questions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/pages/admin_edit_question.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/AdminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AdminPanel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/libraries/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/libraries/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/AdminModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/AdminModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/pages/admin_add_quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/admin_add_quiz.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/pages/admin_list_questions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/admin_list_questions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/pages/admin_list_students.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/admin_list_students.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/pages/admin_quiz_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/admin_quiz_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/pages/layouts/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/layouts/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/pages/layouts/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/layouts/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/pages/layouts/includes/admin-navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/layouts/includes/admin-navbar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/javascript/javascript.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/javascript/javascript.js" afterDir="false" />
     </list>
@@ -54,7 +55,8 @@
       <workItem from="1608405477903" duration="9196000" />
       <workItem from="1608458947806" duration="8307000" />
       <workItem from="1608470062586" duration="3851000" />
-      <workItem from="1608482053888" duration="69633000" />
+      <workItem from="1608482053888" duration="80514000" />
+      <workItem from="1608661311497" duration="6790000" />
     </task>
     <servers />
   </component>

@@ -59,11 +59,11 @@ class AdminModel
         $this->db->execute();
         return "success" ;
     }
-    public function createQuiz($quiz_title, $question_numbers, $mark_on_right, $minus_on_wrong)
+    public function createQuiz($quiz_title, $mark_on_right, $minus_on_wrong,$quiz_questions)
     {
         $currentData = date("Y-m-d H:i:s");
 
-        $this->db->query("INSERT INTO quizes ( quiz_title, question_numbers, mark_on_right, minus_on_wrong, created_at) VALUES ( '$quiz_title', '$question_numbers', '$mark_on_right', '$minus_on_wrong', '$currentData') ");
+        $this->db->query("INSERT INTO quizes ( quiz_title, mark_on_right, minus_on_wrong, quiz_questions, created_at) VALUES ( '$quiz_title', '$mark_on_right', '$minus_on_wrong', '$quiz_questions', '$currentData') ");
 
         $this->db->execute() ;
 
@@ -71,7 +71,7 @@ class AdminModel
     }
     public function listQuizes()
     {
-        $this->db->query("SELECT * FROM quizes ORDER BY created_at DESC; ");
+        $this->db->query("SELECT * FROM quizes ORDER BY created_at ASC; ");
         $result = $this->db->resultSet();
         if(!empty($result))
         {
@@ -93,5 +93,48 @@ class AdminModel
 
         return "success" ;
     }
+    public function listquestions()
+    {
+        $this->db->query("SELECT * FROM questions ORDER BY created_at ASC; ");
+        $result = $this->db->resultSet();
+        if(!empty($result))
+        {
+            return $result;
+        }
+        else{
+            return [
+                "empty" => "No Questions Added Yet "
+            ];
+        }
+    }
 
+    /**
+     * get Question Data
+     * @param $id
+     * @return mixed
+     */
+    public function editQuestion($id)
+    {
+        $this->db->query("SELECT * FROM questions WHERE questions.id=$id ORDER BY created_at ASC; ");
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    /**
+     * Question Update
+     * @param $id
+     * @param $question
+     * @param $choice1
+     * @param $choice2
+     * @param $choice3
+     * @param $choice4
+     * @param $correct_answer
+     * @return string
+     */
+    public function updateQuestion($id, $question, $choice1, $choice2, $choice3, $choice4, $correct_answer)
+    {
+        $this->db->query("UPDATE questions SET question='$question', choice1='$choice1', choice2='$choice2', choice3='$choice3', choice4='$choice4', correct_answer='$correct_answer' WHERE questions.id='$id'");
+        $this->db->execute();
+        return "success" ;
+    }
 }
