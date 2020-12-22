@@ -22,6 +22,51 @@ $(document).ready(function (){
         clickedBtn.parentElement.parentElement.remove();
     })
 
+    //Delete Quiz
+    $(".deleteQuiz").on("click", function (event) {
+        event.preventDefault();
+        let clickedBtn = event.target.parentElement;
+        let action = clickedBtn.getAttribute("href");
+        $.ajax({
+            url: action,
+            type: "POST",
+            cache: false,
+            success: function (response) {
+                $("#alertSuccess").css("display","block");
+                console.log("Success"+response);
+            },
+            error: function(errors) {
+                $("#alertFail").css("display","block");
+                console.log("fail:"+ errors);
+
+            }
+
+        })
+        clickedBtn.parentElement.parentElement.remove();
+    })
+    //Delete Question
+    $(".deleteQuestion").on("click", function (event) {
+        event.preventDefault();
+        let clickedBtn = event.target.parentElement;
+        let action = clickedBtn.getAttribute("href");
+        $.ajax({
+            url: action,
+            type: "POST",
+            cache: false,
+            success: function (response) {
+                $("#alertSuccess").css("display","block");
+                console.log("Success"+response);
+            },
+            error: function(errors) {
+                $("#alertFail").css("display","block");
+                console.log("fail:"+ errors);
+
+            }
+
+        })
+        clickedBtn.parentElement.parentElement.remove();
+    })
+
     //Fetch Question Answers
     $("#choice1").change(function(event){
         let choice1 = event.target.value ;

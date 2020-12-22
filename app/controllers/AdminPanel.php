@@ -121,8 +121,6 @@ class AdminPanel extends Controller
                     $data = [
                         $success => "Quiz Added Successfully "
                     ];
-                    //$_SESSION["quiz_question"] = $data ;
-                  // header("location:".URL_ROOT."/adminPanel/quizLists");
                     $this->view('pages/admin_quiz_list',$data);
                 }else{
                     if(isset($_SESSION["old-quiz"]) || isset( $_SESSION["quizErrors"])){
@@ -144,7 +142,6 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
-
     /**
      * Return view to Admin Quiz List
      */
@@ -169,6 +166,16 @@ class AdminPanel extends Controller
     }
 
     /**
+     * Delete Quiz
+     */
+    public function deleteQuiz()
+    {
+        $id = $_GET["id"];
+        $result = $this->adminModel->deleteQuiz($id);
+        $output = ($result == "success") ?  $result :  "fail";
+        echo json_encode($output);
+    }
+    /**
      * return view of Question Create Form
      */
     public function addQuestion()
@@ -186,7 +193,6 @@ class AdminPanel extends Controller
                                          : $this->view('pages/admin_login');
 
     }
-
     /**
      * Create Question
      */
@@ -382,6 +388,13 @@ class AdminPanel extends Controller
         }else{
             $this->view('pages/admin_login');
         }
+    }
+    public function deleteQuestion()
+    {
+        $id = $_GET["id"];
+        $result = $this->adminModel->deleteQuestion($id);
+        $output = ($result == "success") ?  $result :  "fail";
+        echo json_encode($output);
     }
     /**
      * Logout Admin

@@ -1,7 +1,7 @@
 <?php
 include 'layouts/header.php';
 include 'layouts/includes/admin-navbar.php';
-$delete = URL_ROOT."/adminPanel/delete?id=";
+$delete = URL_ROOT."/adminPanel/deleteQuestion?id=";
 $edit = URL_ROOT."/adminPanel/editQuestion?id=";
 ?>
 
@@ -13,9 +13,9 @@ $edit = URL_ROOT."/adminPanel/editQuestion?id=";
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel">
-                        <?php if(isset($_SESSION["success_msg"])): ?>
+                        <?php if(isset($data["success"])): ?>
                             <div class="alert alert-success alert-dismissible fade show m-auto " role="alert" id="alertSuccess" style=" width:60%;display: flex;justify-content: center;">
-                                <strong><?php echo $_SESSION["success_msg"]["success"]; ?> </strong>
+                                <strong><?php echo $data["success"]; ?> </strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -66,7 +66,7 @@ $edit = URL_ROOT."/adminPanel/editQuestion?id=";
                                                 <a href=<?php echo $delete.$data["id"] ?> class="deleteQuestion">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
-                                                <a href=<?php echo $edit.$data["id"] ?> class="editQuestion">
+                                                <a href=<?php echo $edit.$data["id"] ?>>
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                             </td>
