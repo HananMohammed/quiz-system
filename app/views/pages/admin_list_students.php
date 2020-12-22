@@ -29,8 +29,9 @@ $delete = URL_ROOT."/adminPanel/delete?id="
                                 <tr>
                                     <th scope="col" class="font-weight-bold text-dark">S.N.</th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Name</b></th>
-                                    <th scope="col" class="font-weight-bold text-dark"><b>College</b></th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Email</b></th>
+                                    <th scope="col" class="font-weight-bold text-dark"><b>College</b></th>
+                                    <th scope="col" class="font-weight-bold text-dark"><b>Created.At</b></th>
                                     <th scope="col" class="font-weight-bold text-dark"><b>Action</b></th>
                                 </tr>
                                 </thead>
@@ -43,6 +44,7 @@ $delete = URL_ROOT."/adminPanel/delete?id="
                                         <td class="text-dark font-italic font-weight-bold" ><?php echo $data["name"] ; ?></td>
                                         <td class="text-dark font-italic font-weight-bold" ><?php echo $data["email"] ; ?></td>
                                         <td class="text-dark font-italic font-weight-bold" ><?php echo $data["college"] ; ?></td>
+                                        <td class="text-dark font-italic font-weight-bold" ><?php echo $data["created_at"] ; ?></td>
                                         <td class="text-dark font-italic font-weight-bold" >
                                             <a href=<?php echo $delete.$data["id"] ?> class="deleteStudent">
                                                 <i class="fas fa-trash-alt"></i>

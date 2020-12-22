@@ -4,6 +4,7 @@ $students =URL_ROOT."/adminPanel/students";
 $scores =URL_ROOT."/adminPanel/scores";
 $quiz = URL_ROOT."/adminPanel/quizLists";
 $addQuiz = URL_ROOT."/adminPanel/addQuiz";
+$addQuestion = URL_ROOT."/adminPanel/addQuestion";
 $logout =URL_ROOT."/adminPanel/logout";
 ?>
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -41,6 +42,12 @@ $logout =URL_ROOT."/adminPanel/logout";
             <li class="nav-item">
                 <a class="nav-link" href=<?php echo $addQuiz ;?>>
                     <i class="far fa-file-alt"></i> Add Quiz
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=<?php echo $addQuestion ;?>>
+                    <i class="far fa-file-alt"></i> Add Question
                     <span class="sr-only">(current)</span>
                 </a>
             </li>

@@ -41,7 +41,6 @@ class AdminModel
 
     public function listStudents()
     {
-        $output = [] ;
         $this->db->query("SELECT * FROM students ");
         $result = $this->db->resultSet();
         if(!empty($result))
@@ -54,20 +53,45 @@ class AdminModel
             ];
         }
     }
-    public function createQuiz($quiz_title, $question_numbers, $mark_on_right, $minus_on_wrong)
-    {
-        $currentData = date("Y-m-d H:i:s");
-
-        $this->db->query("INSERT INTO questions ( quiz_title, question_numbers, mark_on_right, minus_on_wrong, created_at) VALUES ( '$quiz_title', '$question_numbers', '$mark_on_right', '$minus_on_wrong', '$currentData') ");
-
-        $this->db->execute() ;
-
-        return "success";
-    }
     public function deleteStudent($id)
     {
         $this->db->query("DELETE FROM students WHERE students.id = $id");
         $this->db->execute();
         return "success" ;
     }
+    public function createQuiz($quiz_title, $question_numbers, $mark_on_right, $minus_on_wrong)
+    {
+        $currentData = date("Y-m-d H:i:s");
+
+        $this->db->query("INSERT INTO quizes ( quiz_title, question_numbers, mark_on_right, minus_on_wrong, created_at) VALUES ( '$quiz_title', '$question_numbers', '$mark_on_right', '$minus_on_wrong', '$currentData') ");
+
+        $this->db->execute() ;
+
+        return "success";
+    }
+    public function listQuizes()
+    {
+        $this->db->query("SELECT * FROM quizes ORDER BY created_at DESC; ");
+        $result = $this->db->resultSet();
+        if(!empty($result))
+        {
+            return $result;
+        }
+        else{
+            return [
+                "empty" => "No Quizes Added Yet "
+            ];
+        }
+    }
+    public function createQuestion($question, $choice1, $choice2, $choice3, $choice4, $correct_answer)
+    {
+        $currentDate = date("Y-m-d H:i:s");
+
+        $this->db->query("INSERT INTO questions ( question, choice1, choice2, choice3, choice4, correct_answer, created_at) VALUES ( '$question', '$choice1', '$choice2', '$choice3', '$choice4','$correct_answer','$currentDate') ");
+
+        $this->db->execute();
+
+        return "success" ;
+    }
+
 }

@@ -16,14 +16,14 @@ class AdminPanel extends Controller
     public function index()
     {
         session_start();
-        if(isset($_SESSION['logged_admin']))
-        {
-            $this->view('pages/admin_homepage');
-        }else{
-            $this->view('pages/admin_login');
-        }
+        isset($_SESSION['logged_admin']) ? $this->view('pages/admin_homepage')
+                                         :  $this->view('pages/admin_login');
 
     }
+
+    /**
+     * Return View Of Admin Panel Students List
+     */
     public function students()
     {
         session_start();
@@ -37,6 +37,18 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+    /**
+     * Delete Student
+     */
+    public function delete()
+    {
+        $result = $this->adminModel->deleteStudent($_GET["id"]) ;
+        $output = ($result == "success") ?  $result :  "fail";
+        echo json_encode($output);
+    }
+    /**
+     * Return View Of Admin Panel Quiz Form  View
+     */
     public function addQuiz()
     {
         session_start();
@@ -52,6 +64,9 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+    /**
+     * Create Quiz
+     */
     public function createQuiz()
     {
         session_start();
@@ -124,11 +139,119 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
-    public function delete()
+
+    /**
+     * Return view to Admin Quiz List
+     */
+    public function quizLists()
     {
-        $result = $this->adminModel->deleteStudent($_GET["id"]) ;
-        $output = ($result == "success") ?  $result :  "fail";
-        echo json_encode($output);
+        session_start();
+        if(isset($_SESSION['logged_admin']))
+        {
+            if(isset($_SESSION["quizes"])){
+                unset($_SESSION["quizes"]) ;
+            }
+            $quizes = $this->adminModel->listQuizes();
+
+            $_SESSION["quizes"] = $quizes;
+
+            $this->view('pages/admin_quiz_list');
+
+        }else{
+            $this->view('pages/admin_login');
+        }
+    }
+
+    /**
+     * return view of Question Create Form
+     */
+    public function addQuestion()
+    {
+        session_start();
+
+        isset($_SESSION['logged_admin']) ? $this->view('pages/admin_create_question')
+                                         : $this->view('pages/admin_login');
+    }
+    public function createQuestion()
+    {
+        session_start();
+        if(isset($_SESSION['logged_admin']))
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST")
+            {
+                if(isset($_SESSION["old-question"]) || isset( $_SESSION["questionErrors"])){
+                    unset($_SESSION['old-question']);
+                    unset($_SESSION['questionErrors']);
+                }
+                if (isset($_SESSION["success_msg"]) ){
+                    unset($_SESSION["success_msg"] );
+                }
+                $questionErrors = [] ;
+                $question =  $this->test_input($_POST["question"]);
+                $choice1 = $this->test_input($_POST["choice1"]);
+                $choice2 = $this->test_input($_POST["choice2"]);
+                $choice3 = $this->test_input($_POST["choice3"]);
+                $choice4 = $this->test_input($_POST["choice4"]);
+                $correct_answer = $this->test_input($_POST["correct_answer"]);
+
+                //Validate Inputs
+
+                !empty($question) ? $question = filter_var($question, FILTER_SANITIZE_STRING)
+                    : $questionErrors["question"] = " Question is Required";
+
+                !empty($choice1) ? $choice1 = filter_var($choice1, FILTER_SANITIZE_STRING)
+                    : $questionErrors["choice1"] = " Choice 1 is Required";
+
+                !empty($choice2) ? $choice2 = filter_var($choice2, FILTER_SANITIZE_STRING)
+                    : $questionErrors["choice2"] = " Choice 2 is Required";
+
+                !empty($choice3) ? $choice3 = filter_var($choice3, FILTER_SANITIZE_STRING)
+                    : $questionErrors["choice3"] = " Choice 3 is Required";
+
+                !empty($choice4) ? $choice4 = filter_var($choice4, FILTER_SANITIZE_STRING)
+                    : $questionErrors["choice4"] = " Choice 4 is Required";
+
+                !empty($correct_answer) ? $correct_answer = filter_var($correct_answer, FILTER_SANITIZE_STRING)
+                    : $questionErrors["correct_answer"] = "correct answer is Required";
+                //Store After Validate
+                if(empty($questionErrors))
+                {
+                    $result  = $this->adminModel->createQuestion($question, $choice1, $choice2, $choice3, $choice4, $correct_answer);
+                    if($result == "success"){
+                        $data = [
+                            $result => "Question Added Successfully....."
+                        ];
+
+                        $_SESSION["success_msg"] = $data ;
+
+                        $this->view('pages/admin_create_question');
+
+                    }
+                }else{
+                    if(isset($_SESSION["old-question"]) || isset( $_SESSION["questionErrors"])){
+                        unset($_SESSION['old-question']);
+                        unset($_SESSION['questionErrors']);
+                    }
+                    $data = [
+                        "question" => $question,
+                        "choice1" => $choice1,
+                        "choice2" => $choice2,
+                        "choice3" => $choice3,
+                        "choice4" => $choice4,
+                        "correct_answer" => $correct_answer
+                    ];
+                    $_SESSION['old-question'] = $data;
+                    $_SESSION['questionErrors'] = $questionErrors;
+                    $this->view('pages/admin_create_question');
+                }
+
+
+            }
+
+
+        }else{
+            $this->view('pages/admin_login');
+        }
     }
     /**
      * Logout Admin

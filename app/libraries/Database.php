@@ -33,7 +33,6 @@ class Database
             echo $this->error;
         }
     }
-
     /**
      * Method Allows To Write Queries
      * @param $sql
@@ -42,7 +41,6 @@ class Database
     {
         $this->statement = $this->dbHandler->prepare($sql);
     }
-
     /**
      * Method Bind Values
      * @param $parameter
@@ -67,7 +65,6 @@ class Database
         }
         $this->statement->bindValue($parameter, $value, $type);
     }
-
     /**
      * Execute The Prepared Statement
      * @return mixed
@@ -76,7 +73,6 @@ class Database
     {
         return $this->statement->execute();
     }
-
     /**
      * Return an Array
      * @return mixed
@@ -86,7 +82,6 @@ class Database
         $this->execute();
         return $this->statement->fetchAll(PDO::FETCH_OBJ);
     }
-
     /**
      * Return a Specific Row of an Object
      * @return mixed
@@ -96,7 +91,6 @@ class Database
         $this->execute();
         return $this->statement->fetch(PDO::FETCH_OBJ);
     }
-
     /**
      * counts the rows Affected by Query
      * @return mixed
