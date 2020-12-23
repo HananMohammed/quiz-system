@@ -109,6 +109,54 @@ class AdminModel
     }
 
     /**
+     * get Quiz Data For Edit
+     * @param $id
+     * @return mixed
+     */
+    public function editQuiz($id)
+    {
+        $this->db->query("SELECT * FROM quizes WHERE quizes.id=$id ORDER BY created_at ASC; ");
+        $result = $this->db->resultSet();
+        return $result;
+    }
+    public function updateQuiz($id, $quiz_title, $mark_on_right, $minus_on_wrong, $quiz_questions)
+    {
+        $this->db->query("UPDATE quizes SET quiz_title='$quiz_title', mark_on_right='$mark_on_right', minus_on_wrong='$minus_on_wrong', quiz_questions='$quiz_questions' WHERE quizes.id='$id'");
+        $this->db->execute();
+        return "success" ;
+    }
+
+    /**
+     * @param $questions
+     * @return array[]
+     */
+    public function quizRelatedQuestions($questions)
+    {
+        $selectedQuestions = [] ;
+        $all_Questions  = [];
+        foreach ($questions as $question){
+            $this->db->query("SELECT * FROM questions WHERE questions.id=$question; ");
+            $result = $this->db->resultSet();
+            array_push($selectedQuestions, $result);
+        }
+        $all_Questions = $this->listquestions();
+        return [
+            "selectedQuestions" =>$selectedQuestions,
+            "all_Questions" =>$all_Questions
+        ];
+    }
+    public function quizQuestionsDatails($questions)
+    {
+        $selectedQuestions = [] ;
+        foreach ($questions as $question){
+            $this->db->query("SELECT * FROM questions WHERE questions.id=$question; ");
+            $result = $this->db->resultSet();
+            array_push($selectedQuestions, $result);
+        }
+        return $selectedQuestions ;
+
+    }
+    /**
      * Delete Quiz
      * @param $id
      * @return string
@@ -201,4 +249,5 @@ class AdminModel
         $this->db->execute();
         return "success" ;
     }
+
 }

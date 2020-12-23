@@ -48,7 +48,7 @@ $action = URL_ROOT."/adminPanel/createQuiz";
                                 <div class="form-group col-md-12">
                                     <label for="totalQuestions">Kindly Select Quiz Related Questions  (Questions Shouldn't be less than 10 or more than 30)</label>
                                     <select id="totalQuestions" name="quiz_questions[]" class="form-control" multiple="multiple">
-                                        <?php foreach ($_SESSION["questions"] as $question):?>
+                                        <?php foreach ($_SESSION["all_quiz_questions"] as $question):?>
                                         <?php $data = get_object_vars($question) ;?>
                                         <option value="<?php echo $data["id"]?>"><?php echo $data["question"]?></option>
                                         <?php endforeach; ?>

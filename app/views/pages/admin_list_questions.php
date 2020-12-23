@@ -64,10 +64,10 @@ $edit = URL_ROOT."/adminPanel/editQuestion?id=";
                                             <td class="text-dark font-italic font-weight-bold" ><?php echo $data["created_at"] ; ?></td>
                                             <td class="text-dark font-italic font-weight-bold" >
                                                 <a href=<?php echo $delete.$data["id"] ?> class="deleteQuestion">
-                                                    <i class="fas fa-trash-alt"></i>
+                                                    <i class="fas fa-trash-alt ml-2"></i>
                                                 </a>
                                                 <a href=<?php echo $edit.$data["id"] ?>>
-                                                    <i class="far fa-edit"></i>
+                                                    <i class="far fa-edit ml-2"></i>
                                                 </a>
                                             </td>
                                         </tr>

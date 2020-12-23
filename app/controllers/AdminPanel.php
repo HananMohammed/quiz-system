@@ -54,15 +54,13 @@ class AdminPanel extends Controller
         session_start();
         if(isset($_SESSION['logged_admin']))
         {
-            if(isset($_SESSION["old-quiz"]) || isset( $_SESSION["quizErrors"]) || isset($_SESSION["quiz_questions"])){
+            if(isset($_SESSION["old-quiz"]) || isset( $_SESSION["quizErrors"])){
                 unset($_SESSION['old-quiz']);
                 unset($_SESSION['quizErrors']);
-                unset($_SESSION["quiz_questions"]);
             }
             $questions = $this->adminModel->listquestions();
-            $_SESSION["quiz_questions"] = $questions;
-
-            $this->view('pages/admin_add_quiz',$questions);
+            $_SESSION["all_quiz_questions"] = $questions  ;
+            $this->view('pages/admin_add_quiz');
 
         }else{
             $this->view('pages/admin_login');
@@ -121,7 +119,7 @@ class AdminPanel extends Controller
                     $data = [
                         $success => "Quiz Added Successfully "
                     ];
-                    $this->view('pages/admin_quiz_list',$data);
+                    $this->view('pages/admin_add_quiz',$data);
                 }else{
                     if(isset($_SESSION["old-quiz"]) || isset( $_SESSION["quizErrors"])){
                         unset($_SESSION['old-quiz']);
@@ -154,6 +152,9 @@ class AdminPanel extends Controller
                 unset($_SESSION["quizes"]) ;
                 unset($_SESSION["quiz_question"]);
             }
+            if (isset($_SESSION["quiz_details_list"] )){
+                unset($_SESSION["quiz_details_list"] );
+            }
             $quizes = $this->adminModel->listQuizes();
 
             $_SESSION["quizes"] = $quizes;
@@ -164,7 +165,94 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+    public function editQuiz()
+    {
+        session_start();
+        if(isset($_SESSION['logged_admin']))
+        {
+            $id = $_GET["id"];
+            $quiz = $this->adminModel->editQuiz($id);
+            $quizQuestionsId = json_decode(get_object_vars($quiz[0])["quiz_questions"]);
+            $quizRelatedQuestions = $this->adminModel->quizRelatedQuestions($quizQuestionsId);
+            $data = [
+                "quiz" => $quiz,
+                "quizRelatedQuestions" => $quizRelatedQuestions,
+            ];
 
+            $this->view('pages/admin_edit_quiz',$data);
+
+        }else{
+            $this->view('pages/admin_login');
+        }
+    }
+    public function updateQuiz()
+    {   session_start();
+        if(isset($_SESSION['logged_admin']))
+        {
+            if (isset($_SERVER["REQUEST_METHOD"]) == "POST")
+            {
+                $quizErrors = [] ;
+
+                $quiz_title =  $this->test_input($_POST["quiz_title"]);
+                $mark_on_right = $this->test_input($_POST["mark_on_right"]);
+                $minus_on_wrong = $this->test_input($_POST["minus_on_wrong"]);
+                $quiz_questions = $_POST["quiz_questions"];
+
+                //Validate Inputs
+
+                !empty($quiz_title) ? $quiz_title = filter_var($quiz_title, FILTER_SANITIZE_STRING)
+                    : $quizErrors["quiz_title"] = " Quiz Title is Required";
+
+                !empty($mark_on_right) ? $mark_on_right = filter_var($mark_on_right,FILTER_SANITIZE_NUMBER_INT)
+                    : $quizErrors["mark_on_right"] = "Marks on correct answer  are Required";
+
+                if($mark_on_right > 5 || $mark_on_right < 1){
+                    $quizErrors["mark_on_right"] = "Marks on correct answer Can't be More Than 5 or less than 1";
+                }
+
+                !empty($minus_on_wrong) ? $minus_on_wrong = filter_var($minus_on_wrong,FILTER_SANITIZE_NUMBER_INT)
+                    : $quizErrors["minus_on_wrong"] = " Marks on Wrong answer are Required";
+
+                !empty($quiz_questions) ? $quiz_questions = filter_var_array($quiz_questions,FILTER_VALIDATE_INT)
+                    : $quizErrors["quiz_questions"] = "It is required to select at least 10 question for each quiz";
+
+                if($minus_on_wrong > 5 || $minus_on_wrong < 1){
+                    $quizErrors["minus_on_wrong"] = "Marks on Wrong answer Can't be More Than 5 or less than 1";
+                }
+                if(count($quiz_questions) > 30 || count($quiz_questions) < 10){
+                    $quizErrors["quiz_questions"] = "Number Of Questions can't be less than 10 or more than 30";
+                }
+                //Store After Validate
+                if(empty($quizErrors))
+                {
+                    $success =  $this->adminModel->updateQuiz($_GET["id"],$quiz_title, $mark_on_right, $minus_on_wrong,json_encode($quiz_questions));
+                    $data = [
+                        $success => "Quiz Updated Successfully "
+                    ];
+                    $this->view('pages/admin_quiz_list',$data);
+                }else{
+                    if(isset($_SESSION["old-edit-quiz"]) || isset( $_SESSION["quiz-edit-Errors"])){
+                        unset($_SESSION['old-edit-quiz']);
+                        unset($_SESSION['quiz-edit-Errors']);
+                    }
+                    $quiz = $this->adminModel->editQuiz($_GET["id"]);
+                    $quizQuestionsId = json_decode(get_object_vars($quiz[0])["quiz_questions"]);
+                    $questions = $this->adminModel->quizRelatedQuestions($quizQuestionsId);
+                    $data= [
+                        "quiz_title"=>$quiz_title,
+                        "mark_on_right"=>$mark_on_right,
+                        "minus_on_wrong"=>$minus_on_wrong,
+                        "quizRelatedQuestions"=>$questions
+                    ];
+                    $_SESSION["old-edit-quiz"] = $data;
+                    $_SESSION["quiz-edit-Errors"] = $quizErrors;
+                    $this->view('pages/admin_edit_quiz');
+                }
+            }
+
+        }
+
+    }
     /**
      * Delete Quiz
      */
@@ -395,6 +483,17 @@ class AdminPanel extends Controller
         $result = $this->adminModel->deleteQuestion($id);
         $output = ($result == "success") ?  $result :  "fail";
         echo json_encode($output);
+    }
+    public function quizDetails()
+    {
+        session_start();
+        $quiz = $this->adminModel->editQuiz($_GET["id"]);
+        $quizQuestionsId = json_decode(get_object_vars($quiz[0])["quiz_questions"]);
+        $questions = $this->adminModel->quizRelatedQuestions($quizQuestionsId);
+        $_SESSION["quiz_details_list"] =["questions" => $questions,
+                                         "quiz" => $quiz
+                                        ];
+        $this->view('pages/admin_quiz_details');
     }
     /**
      * Logout Admin

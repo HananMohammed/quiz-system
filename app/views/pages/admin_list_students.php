@@ -47,7 +47,7 @@ $delete = URL_ROOT."/adminPanel/delete?id="
                                         <td class="text-dark font-italic font-weight-bold" ><?php echo $data["created_at"] ; ?></td>
                                         <td class="text-dark font-italic font-weight-bold" >
                                             <a href=<?php echo $delete.$data["id"] ?> class="deleteStudent">
-                                                <i class="fas fa-trash-alt"></i>
+                                                <i class="fas fa-trash-alt ml-2"></i>
                                             </a>
                                         </td>
                                     </tr>
