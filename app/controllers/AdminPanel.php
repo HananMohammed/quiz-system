@@ -165,6 +165,9 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+    /**
+     * Return view to Quiz Edit and generate Quiz Data
+     */
     public function editQuiz()
     {
         session_start();
@@ -185,6 +188,9 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+    /**
+     * Functionality of Quiz Update
+     */
     public function updateQuiz()
     {   session_start();
         if(isset($_SESSION['logged_admin']))
@@ -361,6 +367,10 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+
+    /**
+     *Questions List
+     */
     public function listQuestion()
     {
         session_start();
@@ -380,6 +390,9 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+    /**
+     * Edit Question load View and Get question Details
+     */
     public function editQuestion()
     {
         session_start();
@@ -401,6 +414,10 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+
+    /**
+     * Questions Update
+     */
     public function updateQuestion()
     {
         session_start();
@@ -477,6 +494,10 @@ class AdminPanel extends Controller
             $this->view('pages/admin_login');
         }
     }
+
+    /**
+     * Question Delete Method
+     */
     public function deleteQuestion()
     {
         $id = $_GET["id"];
@@ -484,16 +505,37 @@ class AdminPanel extends Controller
         $output = ($result == "success") ?  $result :  "fail";
         echo json_encode($output);
     }
+
+    /**
+     * Generate question Details
+     */
     public function quizDetails()
     {
         session_start();
-        $quiz = $this->adminModel->editQuiz($_GET["id"]);
-        $quizQuestionsId = json_decode(get_object_vars($quiz[0])["quiz_questions"]);
-        $questions = $this->adminModel->quizRelatedQuestions($quizQuestionsId);
-        $_SESSION["quiz_details_list"] =["questions" => $questions,
-                                         "quiz" => $quiz
-                                        ];
-        $this->view('pages/admin_quiz_details');
+        if(isset($_SESSION['email'])){
+            $quiz = $this->adminModel->editQuiz($_GET["id"]);
+            $quizQuestionsId = json_decode(get_object_vars($quiz[0])["quiz_questions"]);
+            $questions = $this->adminModel->quizRelatedQuestions($quizQuestionsId);
+            $_SESSION["quiz_details_list"] =["questions" => $questions,
+                "quiz" => $quiz
+            ];
+            $this->view('pages/admin_quiz_details');
+        }else{
+            header("location:".URL_ROOT);
+        }
+
+    }
+    public function scores()
+    {
+        session_start();
+        if(isset($_SESSION['email'])){
+            $scores = $this->adminModel->scores();
+            $_SESSION["all_Students_Scores"] = $scores ;
+            $this->view('pages/admin_students_scores');
+        }else{
+            header("location:".URL_ROOT);
+        }
+
     }
     /**
      * Logout Admin

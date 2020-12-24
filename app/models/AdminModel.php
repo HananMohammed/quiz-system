@@ -249,5 +249,16 @@ class AdminModel
         $this->db->execute();
         return "success" ;
     }
-
+    public function scores()
+    {
+        $this->db->query("SELECT * FROM rankings ORDER BY student_email DESC ; ");
+        $result = $this->db->resultSet();
+        if (!empty($result)){
+            return $result ;
+        }else{
+            return [
+                "empty" => "No Student Tested Yet "
+            ];
+        }
+    }
 }
