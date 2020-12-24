@@ -27,6 +27,18 @@ class WelcomeModel
             ];
         }
     }
+    public function quizesExceptSubmittes($submittedQuiz)
+    {
+        $this->db->query("SELECT * FROM quizes WHERE quizes.quiz_title<>'$submittedQuiz' ORDER BY created_at ASC; ");
+        $result = $this->db->resultSet();
+        if (!empty($result)){
+            return $result;
+        }else{
+            return [
+                "empty" => "No Quizes Added"
+            ];
+        }
+    }
     /**
      * get Quiz Data
      * @param $id

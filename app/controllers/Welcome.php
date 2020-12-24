@@ -38,8 +38,15 @@ class Welcome extends Controller
         session_start();
         if(isset($_SESSION['email']))
         {
-            $quizes = $this->welcomeModel->quizes();
-            $_SESSION['quizes'] = $quizes;
+            $all_quiz = [];
+            $student_history = $this->welcomeModel->studentHistory($_SESSION['email']);
+            foreach ($student_history as $history){
+                $history = get_object_vars($history);
+                $submittedQuiz = $history["quiz_title"] ;
+                $quizes = $this->welcomeModel->quizesExceptSubmittes($submittedQuiz);
+                array_push($all_quiz,$quizes);
+            }
+            $_SESSION['quizes'] = $all_quiz;
             $this->view('pages/student_quiz_home', $quizes);
         }
         else{

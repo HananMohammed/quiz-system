@@ -46,20 +46,23 @@ $start = URL_ROOT."/welcome/questions?id="
                                 </thead>
                                 <tbody>
                                 <?php if(!isset($_SESSION["quizes"]["empty"])): ?>
-                                    <?php foreach ($_SESSION["quizes"] as $quiz):?>
-                                        <?php $data = get_object_vars($quiz); $countQuestions = count(json_decode($data["quiz_questions"])); ?>
-                                        <tr scope="row">
-                                            <td class="text-dark font-italic font-weight-bold" ><?php echo $data["id"] ; ?></td>
-                                            <td class="text-dark font-italic font-weight-bold" ><?php echo $data["quiz_title"] ; ?></td>
-                                            <td class="text-dark font-italic font-weight-bold" ><?php echo  $countQuestions ; ?></td>
-                                            <td class="text-dark font-italic font-weight-bold" ><?php echo $data["mark_on_right"] * count(json_decode($data["quiz_questions"])) ; ?></td>
-                                            <td class="text-dark font-italic font-weight-bold" ><?php echo $data["created_at"] ; ?></td>
-                                            <td class="text-dark font-italic font-weight-bold" >
-                                                <a href=<?php echo $start.$data["id"]?>>
-                                                    <i class="fas fa-keyboard fa-2x"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+
+                                    <?php foreach ($_SESSION["quizes"] as  $quizes):?>
+                                        <?php foreach ($quizes as  $quiz):?>
+                                            <?php $data = get_object_vars($quiz); $countQuestions = count(json_decode($data["quiz_questions"])); ?>
+                                            <tr scope="row">
+                                                <td class="text-dark font-italic font-weight-bold" ><?php echo $data["id"] ; ?></td>
+                                                <td class="text-dark font-italic font-weight-bold" ><?php echo $data["quiz_title"] ; ?></td>
+                                                <td class="text-dark font-italic font-weight-bold" ><?php echo  $countQuestions ; ?></td>
+                                                <td class="text-dark font-italic font-weight-bold" ><?php echo $data["mark_on_right"] * count(json_decode($data["quiz_questions"])) ; ?></td>
+                                                <td class="text-dark font-italic font-weight-bold" ><?php echo $data["created_at"] ; ?></td>
+                                                <td class="text-dark font-italic font-weight-bold" >
+                                                    <a href=<?php echo $start.$data["id"]?>>
+                                                        <i class="fas fa-keyboard fa-2x"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                                 </tbody>

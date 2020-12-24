@@ -87,12 +87,7 @@ Trait Helpers
         ;
 
         // Send the message
-        $result = $mailer->send($message);
-        if ($result){
-            echo "Mail Send";
-        }else{
-            echo "mail Fail";
-        }
+        $mailer->send($message);
 
     }
 }
