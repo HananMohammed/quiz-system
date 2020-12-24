@@ -140,6 +140,14 @@ a {
     top: -120px;
     z-index: 10;
 }
+.best-luck{
+    font-size: 30px;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg, #09009f, #ee786e 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
 .login{
     z-index: 100;
 }

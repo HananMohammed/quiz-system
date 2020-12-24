@@ -1,6 +1,6 @@
 <?php
-$home =URL_ROOT."/welcome?q=1";
-$history =URL_ROOT."/welcome?q=2";
+$home =URL_ROOT."/welcome/home";
+$history =URL_ROOT."/welcome/history";
 $logout =URL_ROOT."/welcome/logout";
 
 ?>

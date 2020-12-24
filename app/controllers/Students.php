@@ -58,7 +58,7 @@ class Students extends Controller
             {
                 preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $password ) ?
                     $password = password_hash($password, PASSWORD_DEFAULT)
-                    : $errors["password"]="Your password is not safe.";
+                    : $errors["password"]="Your password is not safe[should include lower,upper,special Character].";
 
             }else{
                 $errors["password"]="password Is Required";

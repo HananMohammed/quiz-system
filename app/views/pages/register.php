@@ -29,19 +29,19 @@ $loginLink =URL_ROOT."/students/login";
                                 <form method="post" action=<?php echo $action ;?> enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Enter Your Username:</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Student Username"  <?php if(isset($_SESSION["old"]["name"])): ?> value=<?php echo $_SESSION["old"]["name"] ; ?> <?php endif; ?>  />
+                                        <input type="text" name="name" class="form-control" placeholder="Student Username"  <?php if(isset($_SESSION["old"]["name"])): ?> value="<?php echo $_SESSION["old"]["name"] ; ?>" <?php endif; ?>  />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Your Email:</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Student Email"  <?php if(isset($_SESSION["old"]["email"])): ?> value=<?php echo $_SESSION["old"]["email"] ; ?> <?php endif; ?> />
+                                        <input type="email" name="email" class="form-control" placeholder="Student Email"  <?php if(isset($_SESSION["old"]["email"])): ?> value="<?php echo $_SESSION["old"]["email"] ; ?>" <?php endif; ?> />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Your Password:</label>
-                                        <input type="password" name="password" class="form-control"  placeholder="Password"  <?php if(isset($_SESSION["old"]["password"])): ?> value=<?php echo $_SESSION["old"]["password"] ; ?> <?php endif; ?> />
+                                        <input type="password" name="password" class="form-control"  placeholder="Password"  <?php if(isset($_SESSION["old"]["password"])): ?> value="<?php echo $_SESSION["old"]["password"] ; ?>" <?php endif; ?> />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Your College Name:</label>
-                                        <input type="text" name="college" class="form-control"  placeholder="College Name " <?php if(isset($_SESSION["old"]["college"])): ?> value=<?php echo $_SESSION["old"]["college"] ; ?> <?php endif; ?>  />
+                                        <input type="text" name="college" class="form-control"  placeholder="College Name " <?php if(isset($_SESSION["old"]["college"])): ?> value="<?php echo $_SESSION["old"]["college"] ; ?>" <?php endif; ?>  />
                                     </div>
 
                                     <div class="form-group text-right">
