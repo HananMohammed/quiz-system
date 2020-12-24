@@ -1,11 +1,12 @@
 <?php
 $home =URL_ROOT."/welcome/home";
+$welcome =URL_ROOT."/welcome/welcome?q=1";
 $history =URL_ROOT."/welcome/history";
 $logout =URL_ROOT."/welcome/logout";
 
 ?>
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-    <a class="navbar-brand" href=<?php echo $home ;?>>Online Quiz</a>
+    <a class="navbar-brand" href=<?php echo $welcome ;?>>Online Quiz</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

@@ -65,8 +65,18 @@ class AdminModel
      */
     public function deleteStudent($id)
     {
+        $this->db->query("SELECT * FROM students WHERE students.id = $id ");
+        $output = $this->db->resultSet() ;
+        if (!empty($output)){
+            $result  = get_object_vars($output[0]);
+            $email = $result["email"] ;
+            $this->db->query("DELETE FROM rankings WHERE student_email = '$email' ");
+            $this->db->execute();
+
+        }
         $this->db->query("DELETE FROM students WHERE students.id = $id");
         $this->db->execute();
+
         return "success" ;
     }
 

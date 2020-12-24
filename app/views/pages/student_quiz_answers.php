@@ -21,8 +21,7 @@ $action = URL_ROOT."/welcome/quizSubmit?id=".$_GET["id"];
                     <label class="text-primary font-italic font-weight-bold ml-3">Minus On Wrong :</label> <?php echo $quiz["minus_on_wrong"]?>
                 </div>
                 <div class="card-body">
-                    <form method="post" action=<?php echo $action; ?> enctype="multipart/form-data">
-                        <?php foreach ($questions as $key => $question ):?>
+                    <?php foreach ($questions as $key => $question ):?>
                             <?php $question = get_object_vars($question[0]) ; ?>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="text-dark font-weight-bold"><?php echo $question ["question"] ;?></label>
@@ -54,8 +53,6 @@ $action = URL_ROOT."/welcome/quizSubmit?id=".$_GET["id"];
                             <small id="emailHelp" class="form-text font-weight-bold text-primary mb-3 col-md-6 col-xs-12">Correct Answer is :  <?php echo $question["correct_answer"];?></small>
                         <hr>
                         <?php endforeach; ?>
-                        <button type="submit" class="btn btn-primary" style="margin-left: 40%;">Submit</button>
-                    </form>
                 </div>
                 <div class="card-footer text-muted font-weight-bold text-center text-success best-luck ">
                     Good Luck

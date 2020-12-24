@@ -399,9 +399,8 @@ class AdminPanel extends Controller
 
         if(isset($_SESSION['logged_admin']))
         {
-            if(isset($_SESSION["questionData"])|| $_SESSION["success_msg"]){
+            if(isset($_SESSION["questionData"])){
                 unset($_SESSION["questionData"]) ;
-                unset($_SESSION["success_msg"]);
             }
             $id = $_GET["id"];
             $questions = $this->adminModel->editQuestion($id);
