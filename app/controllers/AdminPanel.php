@@ -1,8 +1,11 @@
 <?php
 
+include_once "../app/helpers/Helpers.php";
+
 
 class AdminPanel extends Controller
 {
+    use Helpers ;
     private $adminModel ;
 
     public function __construct()
@@ -549,16 +552,4 @@ class AdminPanel extends Controller
         header("location:".URL_ROOT);
     }
 
-    /**
-     * Test User Data Inputs
-     * @param $data
-     * @return string
-     */
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-
-        return $data;
-    }
 }

@@ -1,8 +1,11 @@
 <?php
 
+include_once "../app/helpers/Helpers.php";
+
+
 class Students extends Controller
 {
-
+    use Helpers ;
     private $studentModel ;
 
     /**
@@ -136,17 +139,5 @@ class Students extends Controller
             }
         }
 
-    }
-    /**
-     * Test User Data Inputs
-     * @param $data
-     * @return string
-     */
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-
-        return $data;
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
+include_once "../app/helpers/Helpers.php";
+
 
 class Admin extends Controller
 {
-
+    use Helpers;
     private $adminModel ;
     /**
      * Admin constructor.
@@ -52,19 +54,6 @@ class Admin extends Controller
             }
         }
 
-    }
-
-    /**
-     * Test User Data Inputs
-     * @param $data
-     * @return string
-     */
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-
-        return $data;
     }
 
 }
