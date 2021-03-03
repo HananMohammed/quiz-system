@@ -2,22 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15ed6091-668f-46ba-ab0d-67de8dedc5c2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/quiz-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quiz-system.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Welcome.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Welcome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/WelcomeModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/WelcomeModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/pages/student_quiz_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/student_quiz_home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="composer.json" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1lt9MPHQ66Fu92ka6KYlbBmXw83" />
   <component name="ProjectViewState">
@@ -28,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eventrex" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -57,7 +76,9 @@
       <workItem from="1608661311497" duration="49264000" />
       <workItem from="1608768098505" duration="112000" />
       <workItem from="1608768231649" duration="1323000" />
-      <workItem from="1608804341837" duration="13307000" />
+      <workItem from="1608804341837" duration="14622000" />
+      <workItem from="1608884465711" duration="54000" />
+      <workItem from="1614768462754" duration="599000" />
     </task>
     <servers />
   </component>

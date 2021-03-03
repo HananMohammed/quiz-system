@@ -40,12 +40,17 @@ class Welcome extends Controller
         {
             $all_quiz = [];
             $student_history = $this->welcomeModel->studentHistory($_SESSION['email']);
-            foreach ($student_history as $history){
-                $history = get_object_vars($history);
-                $submittedQuiz = $history["quiz_title"] ;
-                $quizes = $this->welcomeModel->quizesExceptSubmittes($submittedQuiz);
-                array_push($all_quiz,$quizes);
+            if(!isset($student_history["empty"])){
+                foreach ($student_history as $history){
+                    $history = get_object_vars($history);
+                    $submittedQuiz = $history["quiz_title"] ;
+                    $quizes = $this->welcomeModel->quizesExceptSubmittes($submittedQuiz);
+                    array_push($all_quiz,$quizes);
+                }
+
             }
+            $quizes = $this->welcomeModel->quizes();
+            array_push($all_quiz,$quizes);
             $_SESSION['quizes'] = $all_quiz;
             $this->view('pages/student_quiz_home', $quizes);
         }
